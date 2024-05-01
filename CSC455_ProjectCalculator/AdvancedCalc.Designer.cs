@@ -38,12 +38,14 @@
             this.dotProd = new System.Windows.Forms.Button();
             this.crossProd = new System.Windows.Forms.Button();
             this.average = new System.Windows.Forms.Button();
+            this.btnCalculate = new System.Windows.Forms.Button();
+            this.btnClear = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // textBox1
             // 
             this.textBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 27.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox1.Location = new System.Drawing.Point(116, 12);
+            this.textBox1.Location = new System.Drawing.Point(25, 49);
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(557, 49);
             this.textBox1.TabIndex = 0;
@@ -53,90 +55,120 @@
             // 
             // circlePerim
             // 
-            this.circlePerim.Location = new System.Drawing.Point(116, 108);
+            this.circlePerim.Location = new System.Drawing.Point(25, 191);
             this.circlePerim.Name = "circlePerim";
             this.circlePerim.Size = new System.Drawing.Size(151, 31);
             this.circlePerim.TabIndex = 1;
             this.circlePerim.Text = "Perimeter of Circle";
             this.circlePerim.UseVisualStyleBackColor = true;
+            this.circlePerim.Click += new System.EventHandler(this.circlePerim_Click);
             // 
             // trianglePerim
             // 
-            this.trianglePerim.Location = new System.Drawing.Point(316, 108);
+            this.trianglePerim.Location = new System.Drawing.Point(225, 191);
             this.trianglePerim.Name = "trianglePerim";
             this.trianglePerim.Size = new System.Drawing.Size(151, 31);
             this.trianglePerim.TabIndex = 2;
             this.trianglePerim.Text = "Perimeter of Triangle";
             this.trianglePerim.UseVisualStyleBackColor = true;
+            this.trianglePerim.Click += new System.EventHandler(this.trianglePerim_Click);
             // 
             // rectPerim
             // 
-            this.rectPerim.Location = new System.Drawing.Point(522, 108);
+            this.rectPerim.Location = new System.Drawing.Point(431, 191);
             this.rectPerim.Name = "rectPerim";
             this.rectPerim.Size = new System.Drawing.Size(151, 31);
             this.rectPerim.TabIndex = 3;
             this.rectPerim.Text = "Perimeter of Rectangle";
             this.rectPerim.UseVisualStyleBackColor = true;
+            this.rectPerim.Click += new System.EventHandler(this.rectPerim_Click);
             // 
             // circleArea
             // 
-            this.circleArea.Location = new System.Drawing.Point(116, 202);
+            this.circleArea.Location = new System.Drawing.Point(25, 263);
             this.circleArea.Name = "circleArea";
             this.circleArea.Size = new System.Drawing.Size(151, 31);
             this.circleArea.TabIndex = 4;
             this.circleArea.Text = "Area of Circle";
             this.circleArea.UseVisualStyleBackColor = true;
+            this.circleArea.Click += new System.EventHandler(this.circleArea_Click);
             // 
             // triangleArea
             // 
-            this.triangleArea.Location = new System.Drawing.Point(316, 202);
+            this.triangleArea.Location = new System.Drawing.Point(225, 263);
             this.triangleArea.Name = "triangleArea";
             this.triangleArea.Size = new System.Drawing.Size(151, 31);
             this.triangleArea.TabIndex = 5;
             this.triangleArea.Text = "Area of Triangle";
             this.triangleArea.UseVisualStyleBackColor = true;
+            this.triangleArea.Click += new System.EventHandler(this.triangleArea_Click);
             // 
             // rectArea
             // 
-            this.rectArea.Location = new System.Drawing.Point(522, 202);
+            this.rectArea.Location = new System.Drawing.Point(431, 263);
             this.rectArea.Name = "rectArea";
             this.rectArea.Size = new System.Drawing.Size(151, 31);
             this.rectArea.TabIndex = 6;
             this.rectArea.Text = "Area of Rectangle";
             this.rectArea.UseVisualStyleBackColor = true;
+            this.rectArea.Click += new System.EventHandler(this.rectArea_Click);
             // 
             // dotProd
             // 
-            this.dotProd.Location = new System.Drawing.Point(116, 283);
+            this.dotProd.Location = new System.Drawing.Point(25, 344);
             this.dotProd.Name = "dotProd";
             this.dotProd.Size = new System.Drawing.Size(151, 31);
             this.dotProd.TabIndex = 7;
             this.dotProd.Text = "Dot Product";
             this.dotProd.UseVisualStyleBackColor = true;
+            this.dotProd.Click += new System.EventHandler(this.dotProd_Click);
             // 
             // crossProd
             // 
-            this.crossProd.Location = new System.Drawing.Point(316, 283);
+            this.crossProd.Location = new System.Drawing.Point(225, 344);
             this.crossProd.Name = "crossProd";
             this.crossProd.Size = new System.Drawing.Size(151, 31);
             this.crossProd.TabIndex = 8;
             this.crossProd.Text = "Cross Product";
             this.crossProd.UseVisualStyleBackColor = true;
+            this.crossProd.Click += new System.EventHandler(this.crossProd_Click);
             // 
             // average
             // 
-            this.average.Location = new System.Drawing.Point(522, 283);
+            this.average.Location = new System.Drawing.Point(431, 344);
             this.average.Name = "average";
             this.average.Size = new System.Drawing.Size(151, 31);
             this.average.TabIndex = 9;
             this.average.Text = "Average";
             this.average.UseVisualStyleBackColor = true;
+            this.average.Click += new System.EventHandler(this.btnAverage_Click);
+            // 
+            // btnCalculate
+            // 
+            this.btnCalculate.Location = new System.Drawing.Point(409, 104);
+            this.btnCalculate.Name = "btnCalculate";
+            this.btnCalculate.Size = new System.Drawing.Size(173, 49);
+            this.btnCalculate.TabIndex = 10;
+            this.btnCalculate.Text = "Calculate";
+            this.btnCalculate.UseVisualStyleBackColor = true;
+            this.btnCalculate.Click += new System.EventHandler(this.btnCalculate_Click);
+            // 
+            // btnClear
+            // 
+            this.btnClear.Location = new System.Drawing.Point(25, 104);
+            this.btnClear.Name = "btnClear";
+            this.btnClear.Size = new System.Drawing.Size(173, 49);
+            this.btnClear.TabIndex = 11;
+            this.btnClear.Text = "Clear";
+            this.btnClear.UseVisualStyleBackColor = true;
             // 
             // AdvancedCalc
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 399);
+            this.ClientSize = new System.Drawing.Size(624, 460);
+            this.Controls.Add(this.btnClear);
+            this.Controls.Add(this.btnCalculate);
             this.Controls.Add(this.average);
             this.Controls.Add(this.crossProd);
             this.Controls.Add(this.dotProd);
@@ -166,5 +198,7 @@
         private System.Windows.Forms.Button dotProd;
         private System.Windows.Forms.Button crossProd;
         private System.Windows.Forms.Button average;
+        private System.Windows.Forms.Button btnCalculate;
+        private System.Windows.Forms.Button btnClear;
     }
 }
