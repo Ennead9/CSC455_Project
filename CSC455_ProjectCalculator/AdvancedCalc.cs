@@ -32,7 +32,7 @@ namespace CSC455_ProjectCalculator
         {
 
             selectedCalculation = "circlePerim";
-            textBox1.Text = "Enter positive value for diameter d";
+            label1.Text = "Enter positive value for diameter d";
             
         }
         private double calcCirclePerim(double d)

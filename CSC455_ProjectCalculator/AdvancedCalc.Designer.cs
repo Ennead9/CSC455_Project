@@ -40,22 +40,22 @@
             this.average = new System.Windows.Forms.Button();
             this.btnCalculate = new System.Windows.Forms.Button();
             this.btnClear = new System.Windows.Forms.Button();
+            this.label1 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // textBox1
             // 
-            this.textBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 27.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox1.Location = new System.Drawing.Point(25, 49);
+            this.textBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 27.75F);
+            this.textBox1.Location = new System.Drawing.Point(26, 77);
             this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(557, 49);
+            this.textBox1.Size = new System.Drawing.Size(351, 49);
             this.textBox1.TabIndex = 0;
-            this.textBox1.Text = "Please Select Your Calculation";
-            this.textBox1.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.textBox1.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.textBox1.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
             // 
             // circlePerim
             // 
-            this.circlePerim.Location = new System.Drawing.Point(25, 191);
+            this.circlePerim.Location = new System.Drawing.Point(26, 219);
             this.circlePerim.Name = "circlePerim";
             this.circlePerim.Size = new System.Drawing.Size(151, 31);
             this.circlePerim.TabIndex = 1;
@@ -65,7 +65,7 @@
             // 
             // trianglePerim
             // 
-            this.trianglePerim.Location = new System.Drawing.Point(225, 191);
+            this.trianglePerim.Location = new System.Drawing.Point(226, 219);
             this.trianglePerim.Name = "trianglePerim";
             this.trianglePerim.Size = new System.Drawing.Size(151, 31);
             this.trianglePerim.TabIndex = 2;
@@ -75,7 +75,7 @@
             // 
             // rectPerim
             // 
-            this.rectPerim.Location = new System.Drawing.Point(431, 191);
+            this.rectPerim.Location = new System.Drawing.Point(432, 219);
             this.rectPerim.Name = "rectPerim";
             this.rectPerim.Size = new System.Drawing.Size(151, 31);
             this.rectPerim.TabIndex = 3;
@@ -85,7 +85,7 @@
             // 
             // circleArea
             // 
-            this.circleArea.Location = new System.Drawing.Point(25, 263);
+            this.circleArea.Location = new System.Drawing.Point(26, 291);
             this.circleArea.Name = "circleArea";
             this.circleArea.Size = new System.Drawing.Size(151, 31);
             this.circleArea.TabIndex = 4;
@@ -95,7 +95,7 @@
             // 
             // triangleArea
             // 
-            this.triangleArea.Location = new System.Drawing.Point(225, 263);
+            this.triangleArea.Location = new System.Drawing.Point(226, 291);
             this.triangleArea.Name = "triangleArea";
             this.triangleArea.Size = new System.Drawing.Size(151, 31);
             this.triangleArea.TabIndex = 5;
@@ -105,7 +105,7 @@
             // 
             // rectArea
             // 
-            this.rectArea.Location = new System.Drawing.Point(431, 263);
+            this.rectArea.Location = new System.Drawing.Point(432, 291);
             this.rectArea.Name = "rectArea";
             this.rectArea.Size = new System.Drawing.Size(151, 31);
             this.rectArea.TabIndex = 6;
@@ -115,7 +115,7 @@
             // 
             // dotProd
             // 
-            this.dotProd.Location = new System.Drawing.Point(25, 344);
+            this.dotProd.Location = new System.Drawing.Point(26, 372);
             this.dotProd.Name = "dotProd";
             this.dotProd.Size = new System.Drawing.Size(151, 31);
             this.dotProd.TabIndex = 7;
@@ -125,7 +125,7 @@
             // 
             // crossProd
             // 
-            this.crossProd.Location = new System.Drawing.Point(225, 344);
+            this.crossProd.Location = new System.Drawing.Point(226, 372);
             this.crossProd.Name = "crossProd";
             this.crossProd.Size = new System.Drawing.Size(151, 31);
             this.crossProd.TabIndex = 8;
@@ -135,7 +135,7 @@
             // 
             // average
             // 
-            this.average.Location = new System.Drawing.Point(431, 344);
+            this.average.Location = new System.Drawing.Point(432, 372);
             this.average.Name = "average";
             this.average.Size = new System.Drawing.Size(151, 31);
             this.average.TabIndex = 9;
@@ -145,7 +145,7 @@
             // 
             // btnCalculate
             // 
-            this.btnCalculate.Location = new System.Drawing.Point(409, 104);
+            this.btnCalculate.Location = new System.Drawing.Point(410, 132);
             this.btnCalculate.Name = "btnCalculate";
             this.btnCalculate.Size = new System.Drawing.Size(173, 49);
             this.btnCalculate.TabIndex = 10;
@@ -155,7 +155,7 @@
             // 
             // btnClear
             // 
-            this.btnClear.Location = new System.Drawing.Point(25, 104);
+            this.btnClear.Location = new System.Drawing.Point(410, 65);
             this.btnClear.Name = "btnClear";
             this.btnClear.Size = new System.Drawing.Size(173, 49);
             this.btnClear.TabIndex = 11;
@@ -163,11 +163,22 @@
             this.btnClear.UseVisualStyleBackColor = true;
             this.btnClear.Click += new System.EventHandler(this.btnClear_Click);
             // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F);
+            this.label1.Location = new System.Drawing.Point(21, 45);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(313, 26);
+            this.label1.TabIndex = 12;
+            this.label1.Text = "Please Select Your Calculation";
+            // 
             // AdvancedCalc
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(832, 460);
+            this.ClientSize = new System.Drawing.Size(648, 450);
+            this.Controls.Add(this.label1);
             this.Controls.Add(this.btnClear);
             this.Controls.Add(this.btnCalculate);
             this.Controls.Add(this.average);
@@ -202,5 +213,6 @@
         private System.Windows.Forms.Button average;
         private System.Windows.Forms.Button btnCalculate;
         private System.Windows.Forms.Button btnClear;
+        private System.Windows.Forms.Label label1;
     }
 }
