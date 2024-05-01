@@ -15,6 +15,7 @@ namespace CSC455_ProjectCalculator
     {
 
         public string selectedCalculation;
+        public bool geometryCalc = false;
 
         public AdvancedCalc()
         {
@@ -31,6 +32,8 @@ namespace CSC455_ProjectCalculator
         private void circlePerim_Click(object sender, EventArgs e)
         {
             selectedCalculation = "circlePerim";
+            geometryCalc = true;
+
             label1.Text = "Enter positive value for diameter d";
         }
         private double calcCirclePerim(double d)
@@ -44,6 +47,8 @@ namespace CSC455_ProjectCalculator
         private void trianglePerim_Click(object sender, EventArgs e)
         {
             selectedCalculation = "trianglePerim";
+            geometryCalc = true;
+
             label1.Text = "Enter positive vals for a,b,c separated by a space";
         }
         private double calcTrianglePerim(double a, double b, double c)
@@ -97,6 +102,7 @@ namespace CSC455_ProjectCalculator
         #region Clear & Calculate Buttons
         private void btnClear_Click(object sender, EventArgs e)
         {
+            geometryCalc = false;
             textBox1.Text = "";
         }
         private void btnCalculate_Click(object sender, EventArgs e)
@@ -124,7 +130,7 @@ namespace CSC455_ProjectCalculator
 
                 // Add if number is a valid double
                 if (double .TryParse(input, out number))
-                { 
+                {
                     numbers.Add(number); 
                 }
                 else 
@@ -149,6 +155,15 @@ namespace CSC455_ProjectCalculator
                         MessageBox.Show("Please enter a single, positive number for diameter");
                         textBox1.Text = ""; // Clear textbox for new input
                     }
+                    break;
+
+                case "trianglePerim":
+
+                    double a = numbers[0];
+                    double b = numbers[1];
+                    double c = numbers[2];
+
+
 
                     break;
             }
