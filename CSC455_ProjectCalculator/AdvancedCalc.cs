@@ -21,8 +21,6 @@ namespace CSC455_ProjectCalculator
         {
             InitializeComponent();
         }
-
-        
         private void textBox1_TextChanged(object sender, EventArgs e)
         {
 
@@ -41,7 +39,6 @@ namespace CSC455_ProjectCalculator
             return Math.PI * d;
         }
         #endregion
-
         #region Triangle Perimeter
 
         private void trianglePerim_Click(object sender, EventArgs e)
@@ -57,7 +54,6 @@ namespace CSC455_ProjectCalculator
         }
 
         #endregion
-
         #region Rectangle Perimeter
         private void rectPerim_Click(object sender, EventArgs e)
         {
@@ -71,7 +67,6 @@ namespace CSC455_ProjectCalculator
             return 2*l + 2*w;
         }
         #endregion
-
         #region Area of Circle
         private void circleArea_Click(object sender, EventArgs e)
         {
@@ -99,25 +94,22 @@ namespace CSC455_ProjectCalculator
             label1.Text = "Enter postive values for length and width separated by a space";
         }
         #endregion
-        #region
 
+        private void btnAverage_Click(object sender, EventArgs e)
+        {
+            selectedCalculation = "calcAverage";
+            geometryCalc = false;
 
+            label1.Text = "Enter values separated by a space";
+        }
 
+        #region Other Btns
         private void dotProd_Click(object sender, EventArgs e)
         {
 
         }
 
         private void crossProd_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void btnAverage_Click(object sender, EventArgs e)
-        {
-
-        }
-        private void CalculateAverage(double x, double y)
         {
 
         }
@@ -131,7 +123,6 @@ namespace CSC455_ProjectCalculator
         }
         private void btnCalculate_Click(object sender, EventArgs e)
         {
-
             // Get text from textBox1
             string inputText = textBox1.Text.Trim();
 
@@ -151,18 +142,16 @@ namespace CSC455_ProjectCalculator
             foreach(string input in inputs)
             {
                 double number;
-
                 // Add if number is a valid double
                 if (double .TryParse(input, out number))
                 {
                     numbers.Add(number); 
-                }
-                else 
-                {
+                } else {
                     label1.Text = "Invalid input. Enter numbers separated by spaces";
                 }
             }
-
+            
+            // Switch statements to handle proper calculation
             switch (selectedCalculation)
             {
                 case "circlePerim":
@@ -240,6 +229,17 @@ namespace CSC455_ProjectCalculator
                     } else {
                         MessageBox.Show("Please enter positive numbers for length l and width w");
                     }
+                    break;
+
+                case "calcAverage":
+                    double total = 0;
+                    foreach(double num in numbers)
+                    {
+                        total += num;
+                    }
+                    double avg = total / numbers.Count;
+                    textBox1.Text = avg.ToString("N2");
+
                     break;
             }
         }
