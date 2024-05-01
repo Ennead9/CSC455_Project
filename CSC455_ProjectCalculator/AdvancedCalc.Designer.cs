@@ -161,12 +161,13 @@
             this.btnClear.TabIndex = 11;
             this.btnClear.Text = "Clear";
             this.btnClear.UseVisualStyleBackColor = true;
+            this.btnClear.Click += new System.EventHandler(this.btnClear_Click);
             // 
             // AdvancedCalc
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(624, 460);
+            this.ClientSize = new System.Drawing.Size(832, 460);
             this.Controls.Add(this.btnClear);
             this.Controls.Add(this.btnCalculate);
             this.Controls.Add(this.average);
@@ -181,6 +182,7 @@
             this.Controls.Add(this.textBox1);
             this.Name = "AdvancedCalc";
             this.Text = "AdvancedCalc";
+            this.Load += new System.EventHandler(this.AdvancedCalc_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

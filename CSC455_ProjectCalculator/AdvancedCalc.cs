@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -12,6 +13,9 @@ namespace CSC455_ProjectCalculator
 {
     public partial class AdvancedCalc : Form
     {
+
+        public string selectedCalculation;
+
         public AdvancedCalc()
         {
             InitializeComponent();
@@ -23,31 +27,21 @@ namespace CSC455_ProjectCalculator
 
         }
 
+        #region Circle Perimeter
         private void circlePerim_Click(object sender, EventArgs e)
         {
-            double d;
 
-            if (double.TryParse(textBox1.Text,out d))
-            {
-                if(d > 0)
-                {
-                    double perimeter = calcCirclePerim(d);
-
-                    textBox1.Text = perimeter.ToString("N2"); // Format to 2 decimal places
-                }
-                else
-                {
-                    MessageBox.Show("Please enter a single, positive number for diameter");
-                    textBox1.Text = ""; // Clear textbox for new input
-                }
-            }
+            selectedCalculation = "circlePerim";
+            textBox1.Text = "Enter positive value for diameter d";
+            
         }
-
         private double calcCirclePerim(double d)
         {
             return Math.PI * d;
         }
+        #endregion
 
+        #region
         private void trianglePerim_Click(object sender, EventArgs e)
         {
 
@@ -91,8 +85,36 @@ namespace CSC455_ProjectCalculator
         {
 
         }
+        #endregion
 
         private void btnCalculate_Click(object sender, EventArgs e)
+        {
+            switch (selectedCalculation)
+            {
+                case "circlePerim":
+
+                    double d;
+                    if (double.TryParse(textBox1.Text, out d) && d > 0)
+                    {
+                            double perimeter = calcCirclePerim(d);
+                            textBox1.Text = perimeter.ToString("N2"); // Format to 2 decimal places
+                    }
+                    else
+                    {
+                            MessageBox.Show("Please enter a single, positive number for diameter");
+                            textBox1.Text = ""; // Clear textbox for new input
+                    }
+
+                    break;
+            }
+        }
+
+        private void btnClear_Click(object sender, EventArgs e)
+        {
+            textBox1.Text = "";
+        }
+
+        private void AdvancedCalc_Load(object sender, EventArgs e)
         {
 
         }
