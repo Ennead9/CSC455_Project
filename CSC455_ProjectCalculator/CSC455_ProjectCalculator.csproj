@@ -49,9 +49,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AdvancedCalc.cs">
-      <SubType>Form</SubType>
-    </Compile>
+    <Compile Include="AdvancedCalc.cs" />
     <Compile Include="AdvancedCalc.Designer.cs">
       <DependentUpon>AdvancedCalc.cs</DependentUpon>
     </Compile>

@@ -12,8 +12,61 @@ using System.Windows.Forms;
 
 namespace CSC455_ProjectCalculator
 {
+    public class CalculatorLogic
+    {
+        #region Perimeters
+        public double CalcCirclePerimeter(double diameter)
+        {
+            if (diameter <= 0)
+                throw new ArgumentException("Diameter must be a postive number.");
+            return Math.PI * diameter;
+        }
+        public double CalcTrianglePerimeter(double a, double b, double c)
+        {
+            if (a <= 0 && b <= 0 && c <= 0)
+                throw new ArgumentException("Values must be positive");
+            return a + b + c;
+        }
+        public double CalcRectanglePerimeter(double l, double w)
+        {
+            if (l <= 0 && w <= 0)
+                throw new ArgumentException("Values must be positive");
+            return l + w;
+        }
+        #endregion
+        public double CalcCircleArea(double r)
+        {
+            if (r <= 0)
+                throw new ArgumentException("Value must be positive");
+            return Math.PI * (r * r);
+        }
+        public double CalcTriangleArea(double b, double h)
+        {
+            if (b <= 0 && h <= 0)
+                throw new ArgumentException("Values must be positive");
+            return 0.5 * b * h;
+        }
+        public double CalcRectangleArea(double l, double w)
+        {
+            if ((l <= 0) && (w <= 0))
+                throw new ArgumentException("Values must be positive");
+            return l * w;
+        }
+        public double CalcAverage(List<double> numbers)
+        {
+            double total = 0;
+            foreach (double num in numbers)
+            {
+                total += num;
+            }
+            return total / numbers.Count;
+        }
+    }
     public partial class AdvancedCalc : Form
     {
+
+        private CalculatorLogic calculator = new CalculatorLogic();
+
         public string selectedCalculation;
         public bool geometryCalculation = false;
 
@@ -75,7 +128,6 @@ namespace CSC455_ProjectCalculator
             setupStuff("crossProduct", false, "Enter values for first vector, then second vector, separated by a space");
         }
         #endregion
-
         #region Calculation Functions
 
         private (double, double) calcQuadRoot(double a, double b, double c)
@@ -91,54 +143,47 @@ namespace CSC455_ProjectCalculator
 
             return (root1, root2);
         }
-
         #endregion
-
-        #region Clear & Calculate Buttons
+        #region Clear Button
         private void btnClear_Click(object sender, EventArgs e)
         {
             geometryCalculation = false;
             textBox1.Text = "";
             labelResult.Text = "";
         }
-        private void btnCalculate_Click(object sender, EventArgs e)
+        #endregion
+        #region Parse Text
+        // Parses text in textBox1 and converts to list of doubles, delimited by ' '
+        private List<double> ParseInput(string inputText)
         {
-            // Get text from textBox1
-            string inputText = textBox1.Text.Trim();
+            var numbers = new List<double>();
+            var inputs = inputText.Split(new char[] { ' ' }, StringSplitOptions.RemoveEmptyEntries);
 
-            // Exit early if no input
-            if (string.IsNullOrEmpty(inputText))
+            foreach (var input in inputs)
             {
-                label1.Text = "Error: No input";
-                return;
-            }
-
-            // Split numbers using space as delimiter
-            string[] inputs = inputText.Split(new char[] {' '}, StringSplitOptions.RemoveEmptyEntries);
-
-            // Create list for parsed doubles and add them to list
-            List<double> numbers = new List<double>();
-
-            foreach(string input in inputs)
-            {
-                double number;
                 // Add if number is a valid double
-                if (double .TryParse(input, out number))
+                if (double.TryParse(input, out double number))
                 {
-                    numbers.Add(number); 
+                    numbers.Add(number);
                 } else {
                     label1.Text = "Invalid input. Enter numbers separated by spaces";
+                    return null;
                 }
             }
-            
+            return numbers;
+        }
+        #endregion
+
+        private void PerformCalculations(List<double> numbers)
+        {
             // Switch statements to handle proper calculation
             switch (selectedCalculation)
             {
+                #region Perimeters
                 case "circlePerim":
-                    double d = numbers[0];
-                    if (d > 0 && numbers.Count == 1)
+                    if (numbers.Count == 1) //if statement to ensure parameters are met
                     {
-                        double perimeter = Math.PI * d;
+                        double perimeter = calculator.CalcCirclePerimeter(numbers[0]);
                         textBox1.Text = perimeter.ToString("N2"); // Format to 2 decimal places
                     } else {
                         MessageBox.Show("Please enter a single, positive number for diameter");
@@ -147,14 +192,13 @@ namespace CSC455_ProjectCalculator
                     break;
 
                 case "trianglePerim":
-                    double a = numbers[0];
-                    double b = numbers[1];
-                    double c = numbers[2];
-                    if(a > 0 && b > 0 && c > 0)
+                    if (numbers.Count == 3)
                     {
-                        double perimeter = a + b + c;
+                        double perimeter = calculator.CalcTrianglePerimeter(numbers[0], numbers[1], numbers[2]);
                         labelResult.Text = perimeter.ToString("N2");
-                    } else {
+                    }
+                    else
+                    {
                         MessageBox.Show("Please enter 3 single, positive numbers for side lengths");
                         textBox1.Text = "";
                     }
@@ -162,23 +206,21 @@ namespace CSC455_ProjectCalculator
 
                 // Condense / Combine with area of rectangle?
                 case "rectanglePerim":
-                    double l = numbers[0];
-                    double w = numbers[1];
-                    if(l > 0 && w > 0)
+                    if (numbers.Count == 2) //if statement to ensure parameters are met
                     {
-                        double perimeter = l + w;
+                        double perimeter = calculator.CalcRectanglePerimeter(numbers[0], numbers[1]);
                         labelResult.Text = perimeter.ToString("N2");
                     } else {
                         MessageBox.Show("Please enter positive numbers for length l and width w");
                     }
                     break;
+                #endregion
 
+                #region Areas
                 case "areaCircle":
-
-                    double r = numbers[0];
-                    if(r > 0)
+                    if (numbers.Count == 1) //if statement to ensure parameters are met
                     {
-                        double area = Math.PI * (r*r);
+                        double area = calculator.CalcCircleArea(numbers[0]);
                         labelResult.Text = area.ToString("N2");
                     } else {
                         MessageBox.Show("Please enter a postive value for radius r");
@@ -186,13 +228,9 @@ namespace CSC455_ProjectCalculator
                     break;
 
                 case "areaTriangle":
-
-                    double ba = numbers[0];
-                    double h = numbers[1];
-
-                    if (ba > 0 && h > 0)
+                    if (numbers.Count == 2) //if statement to ensure parameters are met
                     {
-                        double perimeter = 0.5 * ba * h;
+                        double perimeter = calculator.CalcTriangleArea(numbers[0], numbers[1]);
                         labelResult.Text = perimeter.ToString("N2");
                     } else {
                         MessageBox.Show("Please enter positive numbers for base b and height h");
@@ -200,31 +238,24 @@ namespace CSC455_ProjectCalculator
                     break;
 
                 case "areaRectangle":
-
-                    double l2 = numbers[0];
-                    double w2 = numbers[1];
-                    if (l2 > 0 && w2 > 0)
+                    if (numbers.Count == 2) //if statement to ensure parameters are met
                     {
-                        double perimeter = l2 * w2;
+                        double perimeter = calculator.CalcRectangleArea(numbers[0], numbers[1]);
                         labelResult.Text = perimeter.ToString("N2");
                     } else {
                         MessageBox.Show("Please enter positive numbers for length l and width w");
                     }
                     break;
+                #endregion
 
                 case "calcAverage":
-                    double total = 0;
-                    foreach(double num in numbers)
-                    {
-                        total += num;
-                    }
-                    double avg = total / numbers.Count;
+                    double avg = calculator.CalcAverage(numbers);
                     labelResult.Text = avg.ToString("N2");
 
                     break;
 
                 case "dotProduct":
-                    if (numbers.Count == 6)
+                    if (numbers.Count == 6) //if statement to ensure parameters are met
                     {
                         double ax = numbers[0];
                         double ay = numbers[1];
@@ -232,15 +263,15 @@ namespace CSC455_ProjectCalculator
                         double bx = numbers[3];
                         double by = numbers[4];
                         double bz = numbers[5];
-                        double solution1 = ax*bx + ay*by + az*bz;
-                        labelResult.Text = solution1.ToString();
+                        double solution1 = ax * bx + ay * by + az * bz; //dot product formula
+                        labelResult.Text = solution1.ToString(); //prints out solution as a string
 
                     }
                     else { MessageBox.Show("Please enter 6 numbers. If a value is not present type 0 in its place"); }
                     break;
 
                 case "crossProduct":
-                    if (numbers.Count == 6)
+                    if (numbers.Count == 6) //if statement to ensure parameters are met
                     {
                         double ax = numbers[0];
                         double ay = numbers[1];
@@ -248,17 +279,18 @@ namespace CSC455_ProjectCalculator
                         double bx = numbers[3];
                         double by = numbers[4];
                         double bz = numbers[5];
-                        double solution1 = ay * bz - az * by;
-                        double solution2 = az * bx - ax * bz;
-                        double solution3 = ax * by - ay * bx;
-                        labelResult.Text = solution1.ToString() + ", " + solution2.ToString() + ", " + solution3.ToString();
+                        double solution1 = ay * bz - az * by; //formula for x value
+                        double solution2 = az * bx - ax * bz; //formula for y value
+                        double solution3 = ax * by - ay * bx; //formula for z value
+                        labelResult.Text = solution1.ToString() + "i, " + solution2.ToString() + "j, " + solution3.ToString() + "k"; //printing results for x, y, z values (i, j, k)
 
-                    } else { MessageBox.Show("Please enter 6 numbers. If a value is not present type 0 in its place"); }
+                    }
+                    else { MessageBox.Show("Please enter 6 numbers. If a value is not present type 0 in its place"); }
 
                     break;
 
                 case "quadRoot":
-                    if(numbers.Count == 3)
+                    if (numbers.Count == 3)
                     {
                         double a2 = numbers[0];
                         double b2 = numbers[1];
@@ -271,7 +303,23 @@ namespace CSC455_ProjectCalculator
                     break;
             }
         }
-        #endregion
+        private void btnCalculate_Click(object sender, EventArgs e)
+        {
+            // Get text from textBox1
+            string inputText = textBox1.Text.Trim();
+
+            // Exit early if no input
+            if (string.IsNullOrEmpty(inputText))
+            {
+                label1.Text = "Error: No input";
+                return;
+            }
+            var numbers = ParseInput(inputText);
+            if (numbers == null) return;
+
+            PerformCalculations(numbers);
+          
+        }
 
         private void AdvancedCalc_Load(object sender, EventArgs e)
         {
