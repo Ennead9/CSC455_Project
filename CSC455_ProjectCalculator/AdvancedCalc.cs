@@ -12,56 +12,7 @@ using System.Windows.Forms;
 
 namespace CSC455_ProjectCalculator
 {
-    public class CalculatorLogic
-    {
-        #region Perimeters
-        public double CalcCirclePerimeter(double diameter)
-        {
-            if (diameter <= 0)
-                throw new ArgumentException("Diameter must be a postive number.");
-            return Math.PI * diameter;
-        }
-        public double CalcTrianglePerimeter(double a, double b, double c)
-        {
-            if (a <= 0 && b <= 0 && c <= 0)
-                throw new ArgumentException("Values must be positive");
-            return a + b + c;
-        }
-        public double CalcRectanglePerimeter(double l, double w)
-        {
-            if (l <= 0 && w <= 0)
-                throw new ArgumentException("Values must be positive");
-            return l + w;
-        }
-        #endregion
-        public double CalcCircleArea(double r)
-        {
-            if (r <= 0)
-                throw new ArgumentException("Value must be positive");
-            return Math.PI * (r * r);
-        }
-        public double CalcTriangleArea(double b, double h)
-        {
-            if (b <= 0 && h <= 0)
-                throw new ArgumentException("Values must be positive");
-            return 0.5 * b * h;
-        }
-        public double CalcRectangleArea(double l, double w)
-        {
-            if ((l <= 0) && (w <= 0))
-                throw new ArgumentException("Values must be positive");
-            return l * w;
-        }
-        public double CalcAverage(List<double> numbers)
-        {
-            double total = 0;
-            foreach (double num in numbers)
-            {
-                total += num;
-            }
-            return total / numbers.Count;
-        }
-    }
+    #region AdvancedCalc
     public partial class AdvancedCalc : Form
     {
 
@@ -154,7 +105,7 @@ namespace CSC455_ProjectCalculator
         #endregion
         #region Parse Text
         // Parses text in textBox1 and converts to list of doubles, delimited by ' '
-        private List<double> ParseInput(string inputText)
+        public List<double> ParseInput(string inputText)
         {
             var numbers = new List<double>();
             var inputs = inputText.Split(new char[] { ' ' }, StringSplitOptions.RemoveEmptyEntries);
@@ -174,7 +125,7 @@ namespace CSC455_ProjectCalculator
         }
         #endregion
 
-        private void PerformCalculations(List<double> numbers)
+        public void PerformCalculations(List<double> numbers)
         {
             // Switch statements to handle proper calculation
             switch (selectedCalculation)
@@ -215,7 +166,6 @@ namespace CSC455_ProjectCalculator
                     }
                     break;
                 #endregion
-
                 #region Areas
                 case "areaCircle":
                     if (numbers.Count == 1) //if statement to ensure parameters are met
@@ -303,7 +253,7 @@ namespace CSC455_ProjectCalculator
                     break;
             }
         }
-        private void btnCalculate_Click(object sender, EventArgs e)
+        public void btnCalculate_Click(object sender, EventArgs e)
         {
             // Get text from textBox1
             string inputText = textBox1.Text.Trim();
@@ -325,7 +275,57 @@ namespace CSC455_ProjectCalculator
         {
 
         }
+    }
+    #endregion
 
-
+    public class CalculatorLogic
+    {
+        #region Perimeters
+        public double CalcCirclePerimeter(double diameter)
+        {
+            if (diameter <= 0)
+                throw new ArgumentException("Diameter must be a postive number.");
+            return Math.PI * diameter;
+        }
+        public double CalcTrianglePerimeter(double a, double b, double c)
+        {
+            if (a <= 0 && b <= 0 && c <= 0)
+                throw new ArgumentException("Values must be positive");
+            return a + b + c;
+        }
+        public double CalcRectanglePerimeter(double l, double w)
+        {
+            if (l <= 0 && w <= 0)
+                throw new ArgumentException("Values must be positive");
+            return 2 * l + 2 * w;
+        }
+        #endregion
+        public double CalcCircleArea(double r)
+        {
+            if (r <= 0)
+                throw new ArgumentException("Value must be positive");
+            return Math.PI * (r * r);
+        }
+        public double CalcTriangleArea(double b, double h)
+        {
+            if (b <= 0 && h <= 0)
+                throw new ArgumentException("Values must be positive");
+            return 0.5 * b * h;
+        }
+        public double CalcRectangleArea(double l, double w)
+        {
+            if ((l <= 0) && (w <= 0))
+                throw new ArgumentException("Values must be positive");
+            return l * w;
+        }
+        public double CalcAverage(List<double> numbers)
+        {
+            double total = 0;
+            foreach (double num in numbers)
+            {
+                total += num;
+            }
+            return total / numbers.Count;
+        }
     }
 }
