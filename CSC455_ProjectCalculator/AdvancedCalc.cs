@@ -5,6 +5,7 @@ using System.Data;
 using System.Drawing;
 using System.IO;
 using System.Linq;
+using System.Reflection.Emit;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
@@ -79,22 +80,7 @@ namespace CSC455_ProjectCalculator
             setupStuff("crossProduct", false, "Enter values for first vector, then second vector, separated by a space");
         }
         #endregion
-        #region Calculation Functions
 
-        private (double, double) calcQuadRoot(double a, double b, double c)
-        {
-            double root1, root2;
-            double det = b * b - 4 * a * c;
-            if(det < 0)
-            {
-                label1.Text = "Error: No real roots";
-            }
-            root1 = (-1 * b + Math.Sqrt(det)) / 2 * a;
-            root2 = (-1 * b - Math.Sqrt(det)) / 2 * a;
-
-            return (root1, root2);
-        }
-        #endregion
         #region Clear Button
         private void btnClear_Click(object sender, EventArgs e)
         {
@@ -207,14 +193,8 @@ namespace CSC455_ProjectCalculator
                 case "dotProduct":
                     if (numbers.Count == 6) //if statement to ensure parameters are met
                     {
-                        double ax = numbers[0];
-                        double ay = numbers[1];
-                        double az = numbers[2];
-                        double bx = numbers[3];
-                        double by = numbers[4];
-                        double bz = numbers[5];
-                        double solution1 = ax * bx + ay * by + az * bz; //dot product formula
-                        labelResult.Text = solution1.ToString(); //prints out solution as a string
+                        double dotProd = calculator.CalcDotProduct(numbers[0], numbers[1], numbers[2], numbers[3], numbers[4], numbers[5]);
+                        labelResult.Text = dotProd.ToString(); //prints out solution as a string
 
                     }
                     else { MessageBox.Show("Please enter 6 numbers. If a value is not present type 0 in its place"); }
@@ -223,16 +203,8 @@ namespace CSC455_ProjectCalculator
                 case "crossProduct":
                     if (numbers.Count == 6) //if statement to ensure parameters are met
                     {
-                        double ax = numbers[0];
-                        double ay = numbers[1];
-                        double az = numbers[2];
-                        double bx = numbers[3];
-                        double by = numbers[4];
-                        double bz = numbers[5];
-                        double solution1 = ay * bz - az * by; //formula for x value
-                        double solution2 = az * bx - ax * bz; //formula for y value
-                        double solution3 = ax * by - ay * bx; //formula for z value
-                        labelResult.Text = solution1.ToString() + "i, " + solution2.ToString() + "j, " + solution3.ToString() + "k"; //printing results for x, y, z values (i, j, k)
+                        (double sol1, double sol2, double sol3) = calculator.CalcCrossProduct(numbers[0], numbers[1], numbers[2], numbers[3], numbers[4], numbers[5]);
+                        labelResult.Text = sol1.ToString() + "i, " + sol2.ToString() + "j, " + sol3.ToString() + "k"; //printing results for x, y, z values (i, j, k)
 
                     }
                     else { MessageBox.Show("Please enter 6 numbers. If a value is not present type 0 in its place"); }
@@ -242,17 +214,21 @@ namespace CSC455_ProjectCalculator
                 case "quadRoot":
                     if (numbers.Count == 3)
                     {
-                        double a2 = numbers[0];
-                        double b2 = numbers[1];
-                        double c2 = numbers[2];
-
-                        (double root1, double root2) = calcQuadRoot(a2, b2, c2);
+                        (double root1, double root2) = calculator.CalcQuadRoot(numbers[0], numbers[1], numbers[2]);
+                        if(double.IsNaN(root1) || double.IsNaN(root2))
+                        {
+                            MessageBox.Show("Error: One non-real root.");
+                            break;
+                        }
                         textBox1.Text = $"x = {root1}, {root2}";
+                    } else
+                    {
+                        MessageBox.Show("Please enter 3 numbers for coefficients a, b, c from form of ax^2+bx+c.");
                     }
-
                     break;
             }
         }
+        #region Calculate Btn
         public void btnCalculate_Click(object sender, EventArgs e)
         {
             // Get text from textBox1
@@ -275,6 +251,7 @@ namespace CSC455_ProjectCalculator
         {
 
         }
+        #endregion
     }
     #endregion
 
@@ -289,17 +266,18 @@ namespace CSC455_ProjectCalculator
         }
         public double CalcTrianglePerimeter(double a, double b, double c)
         {
-            if (a <= 0 && b <= 0 && c <= 0)
+            if (a <= 0 || b <= 0 || c <= 0)
                 throw new ArgumentException("Values must be positive");
             return a + b + c;
         }
         public double CalcRectanglePerimeter(double l, double w)
         {
-            if (l <= 0 && w <= 0)
+            if (l <= 0 || w <= 0)
                 throw new ArgumentException("Values must be positive");
             return 2 * l + 2 * w;
         }
         #endregion
+        #region Areas
         public double CalcCircleArea(double r)
         {
             if (r <= 0)
@@ -308,16 +286,17 @@ namespace CSC455_ProjectCalculator
         }
         public double CalcTriangleArea(double b, double h)
         {
-            if (b <= 0 && h <= 0)
+            if (b <= 0 || h <= 0)
                 throw new ArgumentException("Values must be positive");
             return 0.5 * b * h;
         }
         public double CalcRectangleArea(double l, double w)
         {
-            if ((l <= 0) && (w <= 0))
+            if ((l <= 0) || (w <= 0))
                 throw new ArgumentException("Values must be positive");
             return l * w;
         }
+        #endregion
         public double CalcAverage(List<double> numbers)
         {
             double total = 0;
@@ -326,6 +305,34 @@ namespace CSC455_ProjectCalculator
                 total += num;
             }
             return total / numbers.Count;
+        }
+        public double CalcDotProduct(double ax, double ay, double az, double bx, double by, double bz)
+        {
+            double solution1 = ax * bx + ay * by + az * bz; //dot product formula
+            return solution1;
+        }
+
+        public (double, double, double) CalcCrossProduct(double ai, double aj, double ak, double bi, double bj, double bk)
+        {
+            double solution1 = aj * bk - ak * bj; //formula for x value
+            double solution2 = ak * bi - ai * bk; //formula for y value
+            double solution3 = ai * bj - aj * bi; //formula for z value 
+
+            return (solution1, solution2, solution3);
+        }
+
+        public (double, double) CalcQuadRoot(double a, double b, double c)
+        {
+            double root1, root2;
+            double det = b * b - 4 * a * c;
+            if (det < 0)
+            {
+                return (double.NaN, double.NaN);
+            }
+            root1 = (-1 * b + Math.Sqrt(det)) / 2 * a;
+            root2 = (-1 * b - Math.Sqrt(det)) / 2 * a;
+
+            return (root1, root2);
         }
     }
 }

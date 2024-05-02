@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Windows.Forms;
 using System.Management.Instrumentation;
+using System.Windows.Markup;
 
 namespace CSC455_ProjectCalculator.Tests
 {
@@ -92,7 +93,7 @@ namespace CSC455_ProjectCalculator.Tests
             var result = _calculator.CalcCirclePerimeter(input);
 
             //Assert
-            Assert.AreEqual(values[1], result, "Expected integer of 1 for result");
+            Assert.AreNotEqual(values[1], result, "Expected integer of 1 for result");
         }
 
         [TestMethod]
@@ -129,12 +130,12 @@ namespace CSC455_ProjectCalculator.Tests
             var result = _calculator.CalcTrianglePerimeter(input1, input2, input3);
 
             // Assert
-            Assert.AreEqual(values[3], result, "Expected integer" + values[3] + "as result");
+            Assert.AreNotEqual(values[3], result, "Result should not equal" + values[3]);
 
         }
 
         [TestMethod]
-        [DataRow(1, 2, 5)]
+        [DataRow(1, 2, 6)]
         [DataRow(2, 4, 12)]
         public void RectanglePerimeter_ReturnsCorrectValue(params int[] values)
         {
@@ -162,7 +163,7 @@ namespace CSC455_ProjectCalculator.Tests
             var result = _calculator.CalcRectanglePerimeter(input1, input2);
 
             //Assert
-            Assert.AreEqual(values[2], result, "Expected integer" + values[2] + "as result");
+            Assert.AreNotEqual(values[2], result, "Result should not equal " + values[2]);
         }
 
 
@@ -181,19 +182,21 @@ namespace CSC455_ProjectCalculator.Tests
             Assert.AreEqual(sol, result, "Expected integer" + sol + "as result");
         }
         [TestMethod]
+        [DataRow(2)]
         public void CircleArea_ReturnsIncorrectValue(params int[] values)
         {
             //Arrange
-            var radius = 2;
+            var radius = values[0];
             var sol = (radius * radius) * Math.PI + 1;
 
             //Act
             var result = _calculator.CalcCircleArea(radius);
 
             //Assert
-            Assert.AreEqual(sol, result, "Expected integer" + sol + "as result");
+            Assert.AreNotEqual(sol, result, "Result should not equal " + sol);
         }
         [TestMethod]
+        [DataRow(-5)]
         [ExpectedException(typeof(ArgumentException), "Value must be positive")]
         public void CircleArea_ThrowsArgumentException(params int[] values)
         {
@@ -222,14 +225,26 @@ namespace CSC455_ProjectCalculator.Tests
             Assert.AreEqual(values[2], result, "Expected area of " + values[2] + " for result.");
         }
         [TestMethod]
+        [DataRow(6, 10, 29)]
+        [DataRow(8, 15, 66)]
+        [DataRow(10, 12, 14)]
         public void TriangleArea_ReturnsIncorrectValue(params int[] values)
         {
+            // Arrange
+            double b = values[0];
+            double h = values[1];
+
+            // Act
+            var result = _calculator.CalcTriangleArea(b, h);
+
+            // Assert
+            Assert.AreNotEqual(values[2], result, "Result should not equal " + values[2]);
 
         }
         [TestMethod]
         [DataRow(-1, 2)]
         [DataRow(-5, 3)]
-        [DataRow(-1.6, 4)]
+        [DataRow(-6, 4)]
         [ExpectedException(typeof(ArgumentException), "Values must be positive")]
         public void TriangleArea_ThrowsArgumentException(params int[] values)
         {
@@ -259,14 +274,24 @@ namespace CSC455_ProjectCalculator.Tests
             Assert.AreEqual(values[2], result, "Expected area of " + values[2] + " for result.");
         }
         [TestMethod]
+        [DataRow(1, 1, 5)]
+        [DataRow(2, 2, 99)]
         public void RectangleArea_ReturnsIncorrectValue(params int[] values)
         {
+            // Arrange
+            double l = values[0];
+            double w = values[1];
 
+            // Act
+            var result = _calculator.CalcRectangleArea(l, w);
+
+            // Assert
+            Assert.AreNotEqual(values[2], result, "Result should not equal " + values[2] + ".");
         }
         [TestMethod]
         [DataRow(-1, 2)]
         [DataRow(-5, 3)]
-        [DataRow(-1.6, 4)]
+        [DataRow(-6, 4)]
         [ExpectedException(typeof(ArgumentException), "Values must be positive")]
         public void RectangleArea_ThrowsArgumentException(params int[] values)
         {
@@ -292,15 +317,83 @@ namespace CSC455_ProjectCalculator.Tests
             // Assert
             Assert.AreEqual(3, result, "Expected average of 3");
         }
+
+        // CalcQuadRoot Tests
         [TestMethod]
-        [ExpectedException(typeof(DivideByZeroException))]
-        public void Average_EmptyList_ThrowsDivideByZeroException()
+        [DataRow(1, 1, -2, 1, -2)]
+        [DataRow(1, -8, 15, 5, 3)]
+        [DataRow(1, 4, 3, -1, -3)]
+        public void QuadRoot_ReturnsCorrectRoots(params int[] values)
         {
             // Arrange
-            var input = new List<double>();
+            var expectedRoot1 = values[3];
+            var expectedRoot2 = values[4];
+            
+            // Act
+            (double actualRoot1, double actualRoot2) = _calculator.CalcQuadRoot(values[0], values[1], values[2]);
+
+            // Assert
+            Assert.AreEqual(expectedRoot1, actualRoot1, "Root 1 is not correct.");
+            Assert.AreEqual(expectedRoot2, actualRoot2, "Root 2 is not correct.");
+        }
+        [TestMethod]
+        [DataRow(1, 2, 5)]
+        [DataRow(1, 0, 4)]
+        public void QuadRoot_NonRealRoots(params int[] values)
+        {
+            // Arrange
+            double a = values[0];
+            double b = values[1];
+            double c = values[2];
 
             // Act
-            _calculator.CalcAverage(input);
+            (double root1, double root2) = _calculator.CalcQuadRoot(a, b, c);
+
+            // Assert
+            Assert.IsTrue(double.IsNaN(root1), "Non-real result for root1 should be indicated by being NaN.");
+            Assert.IsTrue(double.IsNaN(root2), "Non-real result for root1 should be indicated by being NaN.");
+        }
+
+        [TestMethod]
+        [DataRow(1, 2, 3, 1, 2, 3, 14)]
+        [DataRow(2, 4, 6, 1, 4, 5, 48)]
+        public void DotProd_ReturnsCorrectValue(params int[] values)
+        {
+            //Arrange
+            var input1 = values[0];
+            var input2 = values[1];
+            var input3 = values[2];
+            var input4 = values[3];
+            var input5 = values[4];
+            var input6 = values[5];
+
+            //Act
+            var result = _calculator.CalcDotProduct(input1, input2, input3, input4, input5, input6);
+
+            //Assert
+            Assert.AreEqual(values[6], result, "Expected value of " + values[6]);
+        }
+
+        [TestMethod]
+        [DataRow(1, 2, 3, 1, 2, 3, 0, 0, 0)]
+        [DataRow(2, 4, 6, 1, 4, 5, -4,-4, 4)]
+        public void CrossProd_ReturnsCorrectValue(params int[] values)
+        {
+            //Arrange
+            var input1 = values[0];
+            var input2 = values[1];
+            var input3 = values[2];
+            var input4 = values[3];
+            var input5 = values[4];
+            var input6 = values[5];
+
+            //Act
+            (double resulti, double resultj, double resultk) = _calculator.CalcCrossProduct(input1, input2, input3, input4, input5, input6);
+
+            //Assert
+            Assert.AreEqual(values[6], resulti, "Expected value of " + values[6] + "i");
+            Assert.AreEqual(values[7], resultj, "Expected value of " + values[7] + "j");
+            Assert.AreEqual(values[8], resultk, "Expected value of " + values[8] + "i");
         }
     }
 }
