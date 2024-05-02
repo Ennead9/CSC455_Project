@@ -41,6 +41,8 @@
             this.btnCalculate = new System.Windows.Forms.Button();
             this.btnClear = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
+            this.labelResult = new System.Windows.Forms.Label();
+            this.btnQuadRoot = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // textBox1
@@ -115,7 +117,7 @@
             // 
             // dotProd
             // 
-            this.dotProd.Location = new System.Drawing.Point(26, 372);
+            this.dotProd.Location = new System.Drawing.Point(26, 356);
             this.dotProd.Name = "dotProd";
             this.dotProd.Size = new System.Drawing.Size(151, 31);
             this.dotProd.TabIndex = 7;
@@ -125,7 +127,7 @@
             // 
             // crossProd
             // 
-            this.crossProd.Location = new System.Drawing.Point(226, 372);
+            this.crossProd.Location = new System.Drawing.Point(226, 356);
             this.crossProd.Name = "crossProd";
             this.crossProd.Size = new System.Drawing.Size(151, 31);
             this.crossProd.TabIndex = 8;
@@ -135,7 +137,7 @@
             // 
             // average
             // 
-            this.average.Location = new System.Drawing.Point(432, 372);
+            this.average.Location = new System.Drawing.Point(432, 356);
             this.average.Name = "average";
             this.average.Size = new System.Drawing.Size(151, 31);
             this.average.TabIndex = 9;
@@ -173,11 +175,33 @@
             this.label1.TabIndex = 12;
             this.label1.Text = "Please Select Your Calculation";
             // 
+            // labelResult
+            // 
+            this.labelResult.BackColor = System.Drawing.SystemColors.ActiveBorder;
+            this.labelResult.Font = new System.Drawing.Font("Microsoft Sans Serif", 27.75F);
+            this.labelResult.Location = new System.Drawing.Point(172, 139);
+            this.labelResult.Name = "labelResult";
+            this.labelResult.Size = new System.Drawing.Size(205, 42);
+            this.labelResult.TabIndex = 14;
+            this.labelResult.TextAlign = System.Drawing.ContentAlignment.BottomRight;
+            // 
+            // btnQuadRoot
+            // 
+            this.btnQuadRoot.Location = new System.Drawing.Point(226, 407);
+            this.btnQuadRoot.Name = "btnQuadRoot";
+            this.btnQuadRoot.Size = new System.Drawing.Size(151, 31);
+            this.btnQuadRoot.TabIndex = 15;
+            this.btnQuadRoot.Text = "Quadratic Roots";
+            this.btnQuadRoot.UseVisualStyleBackColor = true;
+            this.btnQuadRoot.Click += new System.EventHandler(this.btnQuadRoot_Click);
+            // 
             // AdvancedCalc
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(648, 450);
+            this.ClientSize = new System.Drawing.Size(643, 460);
+            this.Controls.Add(this.btnQuadRoot);
+            this.Controls.Add(this.labelResult);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.btnClear);
             this.Controls.Add(this.btnCalculate);
@@ -191,6 +215,7 @@
             this.Controls.Add(this.trianglePerim);
             this.Controls.Add(this.circlePerim);
             this.Controls.Add(this.textBox1);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Name = "AdvancedCalc";
             this.Text = "AdvancedCalc";
             this.Load += new System.EventHandler(this.AdvancedCalc_Load);
@@ -214,5 +239,7 @@
         private System.Windows.Forms.Button btnCalculate;
         private System.Windows.Forms.Button btnClear;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label labelResult;
+        private System.Windows.Forms.Button btnQuadRoot;
     }
 }
