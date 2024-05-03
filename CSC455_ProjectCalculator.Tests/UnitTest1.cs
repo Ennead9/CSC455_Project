@@ -1,10 +1,6 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using CSC455_ProjectCalculator;
-using System;
 using System.Collections.Generic;
-using System.Windows.Forms;
-using System.Management.Instrumentation;
-using System.Windows.Markup;
+using System;
 
 namespace CSC455_ProjectCalculator.Tests
 {
