@@ -48,7 +48,7 @@
             // textBox1
             // 
             this.textBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 27.75F);
-            this.textBox1.Location = new System.Drawing.Point(26, 77);
+            this.textBox1.Location = new System.Drawing.Point(35, 88);
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(351, 49);
             this.textBox1.TabIndex = 0;
@@ -57,7 +57,7 @@
             // 
             // circlePerim
             // 
-            this.circlePerim.Location = new System.Drawing.Point(26, 219);
+            this.circlePerim.Location = new System.Drawing.Point(112, 310);
             this.circlePerim.Name = "circlePerim";
             this.circlePerim.Size = new System.Drawing.Size(151, 31);
             this.circlePerim.TabIndex = 1;
@@ -67,7 +67,7 @@
             // 
             // trianglePerim
             // 
-            this.trianglePerim.Location = new System.Drawing.Point(226, 219);
+            this.trianglePerim.Location = new System.Drawing.Point(312, 310);
             this.trianglePerim.Name = "trianglePerim";
             this.trianglePerim.Size = new System.Drawing.Size(151, 31);
             this.trianglePerim.TabIndex = 2;
@@ -77,7 +77,7 @@
             // 
             // rectPerim
             // 
-            this.rectPerim.Location = new System.Drawing.Point(432, 219);
+            this.rectPerim.Location = new System.Drawing.Point(518, 310);
             this.rectPerim.Name = "rectPerim";
             this.rectPerim.Size = new System.Drawing.Size(151, 31);
             this.rectPerim.TabIndex = 3;
@@ -87,7 +87,7 @@
             // 
             // circleArea
             // 
-            this.circleArea.Location = new System.Drawing.Point(26, 291);
+            this.circleArea.Location = new System.Drawing.Point(112, 382);
             this.circleArea.Name = "circleArea";
             this.circleArea.Size = new System.Drawing.Size(151, 31);
             this.circleArea.TabIndex = 4;
@@ -97,7 +97,7 @@
             // 
             // triangleArea
             // 
-            this.triangleArea.Location = new System.Drawing.Point(226, 291);
+            this.triangleArea.Location = new System.Drawing.Point(312, 382);
             this.triangleArea.Name = "triangleArea";
             this.triangleArea.Size = new System.Drawing.Size(151, 31);
             this.triangleArea.TabIndex = 5;
@@ -107,7 +107,7 @@
             // 
             // rectArea
             // 
-            this.rectArea.Location = new System.Drawing.Point(432, 291);
+            this.rectArea.Location = new System.Drawing.Point(518, 382);
             this.rectArea.Name = "rectArea";
             this.rectArea.Size = new System.Drawing.Size(151, 31);
             this.rectArea.TabIndex = 6;
@@ -117,7 +117,7 @@
             // 
             // dotProd
             // 
-            this.dotProd.Location = new System.Drawing.Point(26, 356);
+            this.dotProd.Location = new System.Drawing.Point(112, 447);
             this.dotProd.Name = "dotProd";
             this.dotProd.Size = new System.Drawing.Size(151, 31);
             this.dotProd.TabIndex = 7;
@@ -127,7 +127,7 @@
             // 
             // crossProd
             // 
-            this.crossProd.Location = new System.Drawing.Point(226, 356);
+            this.crossProd.Location = new System.Drawing.Point(312, 447);
             this.crossProd.Name = "crossProd";
             this.crossProd.Size = new System.Drawing.Size(151, 31);
             this.crossProd.TabIndex = 8;
@@ -137,7 +137,7 @@
             // 
             // average
             // 
-            this.average.Location = new System.Drawing.Point(432, 356);
+            this.average.Location = new System.Drawing.Point(518, 447);
             this.average.Name = "average";
             this.average.Size = new System.Drawing.Size(151, 31);
             this.average.TabIndex = 9;
@@ -147,9 +147,9 @@
             // 
             // btnCalculate
             // 
-            this.btnCalculate.Location = new System.Drawing.Point(410, 132);
+            this.btnCalculate.Location = new System.Drawing.Point(221, 206);
             this.btnCalculate.Name = "btnCalculate";
-            this.btnCalculate.Size = new System.Drawing.Size(173, 49);
+            this.btnCalculate.Size = new System.Drawing.Size(165, 50);
             this.btnCalculate.TabIndex = 10;
             this.btnCalculate.Text = "Calculate";
             this.btnCalculate.UseVisualStyleBackColor = true;
@@ -157,9 +157,9 @@
             // 
             // btnClear
             // 
-            this.btnClear.Location = new System.Drawing.Point(410, 65);
+            this.btnClear.Location = new System.Drawing.Point(35, 206);
             this.btnClear.Name = "btnClear";
-            this.btnClear.Size = new System.Drawing.Size(173, 49);
+            this.btnClear.Size = new System.Drawing.Size(165, 50);
             this.btnClear.TabIndex = 11;
             this.btnClear.Text = "Clear";
             this.btnClear.UseVisualStyleBackColor = true;
@@ -169,7 +169,8 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F);
-            this.label1.Location = new System.Drawing.Point(21, 45);
+            this.label1.Location = new System.Drawing.Point(30, 21);
+            this.label1.MaximumSize = new System.Drawing.Size(400, 90);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(313, 26);
             this.label1.TabIndex = 12;
@@ -179,15 +180,15 @@
             // 
             this.labelResult.BackColor = System.Drawing.SystemColors.ActiveBorder;
             this.labelResult.Font = new System.Drawing.Font("Microsoft Sans Serif", 27.75F);
-            this.labelResult.Location = new System.Drawing.Point(172, 139);
+            this.labelResult.Location = new System.Drawing.Point(35, 143);
             this.labelResult.Name = "labelResult";
-            this.labelResult.Size = new System.Drawing.Size(205, 42);
+            this.labelResult.Size = new System.Drawing.Size(351, 50);
             this.labelResult.TabIndex = 14;
-            this.labelResult.TextAlign = System.Drawing.ContentAlignment.BottomRight;
+            this.labelResult.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // btnQuadRoot
             // 
-            this.btnQuadRoot.Location = new System.Drawing.Point(226, 407);
+            this.btnQuadRoot.Location = new System.Drawing.Point(312, 498);
             this.btnQuadRoot.Name = "btnQuadRoot";
             this.btnQuadRoot.Size = new System.Drawing.Size(151, 31);
             this.btnQuadRoot.TabIndex = 15;
@@ -199,7 +200,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(643, 460);
+            this.ClientSize = new System.Drawing.Size(779, 570);
             this.Controls.Add(this.btnQuadRoot);
             this.Controls.Add(this.labelResult);
             this.Controls.Add(this.label1);

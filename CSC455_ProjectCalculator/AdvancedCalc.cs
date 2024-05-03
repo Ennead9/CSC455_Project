@@ -56,28 +56,28 @@ namespace CSC455_ProjectCalculator
         }
         private void rectPerim_Click(object sender, EventArgs e)
         {
-            setupStuff("rectanglePerim", true, "Enter positive vals for length and width separated by a space");
+            setupStuff("rectanglePerim", true, "Enter positive values for length and width separated by a space");
         }
         private void circlePerim_Click(object sender, EventArgs e)
         {
-            setupStuff("circlePerim", true, "Enter positive value for diameter d");
+            setupStuff("circlePerim", true, "Enter a positive value for diameter d");
         }
         private void trianglePerim_Click(object sender, EventArgs e)
         {
-            setupStuff("trianglePerim", true, "Enter vals for a, b, & c, separated by a space");
+            setupStuff("trianglePerim", true, "Enter values for a, b, & c, separated by space");
         }
         private void btnAverage_Click(object sender, EventArgs e)
         {
-            setupStuff("calcAverage", false, "Enter vals separated by a space");
+            setupStuff("calcAverage", false, "Enter as many values as desired, separated by spaces");
         }
         private void dotProd_Click(object sender, EventArgs e)
         {
-            setupStuff("dotProduct", false, "Enter values for first vector, then second vector, separated by a space");
+            setupStuff("dotProduct", false, "Enter 3 values for first vector, then for the second vector, separated by spaces");
         }
 
         private void crossProd_Click(object sender, EventArgs e)
         {
-            setupStuff("crossProduct", false, "Enter values for first vector, then second vector, separated by a space");
+            setupStuff("crossProduct", false, "Enter 3 values for first vector, then for the second vector, separated by spaces");
         }
         #endregion
 
@@ -85,6 +85,7 @@ namespace CSC455_ProjectCalculator
         private void btnClear_Click(object sender, EventArgs e)
         {
             geometryCalculation = false;
+            label1.Text = "Please Select Your Calculation";
             textBox1.Text = "";
             labelResult.Text = "";
         }
