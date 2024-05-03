@@ -16,7 +16,7 @@ namespace CSC455_ProjectCalculator
     #region AdvancedCalc
     public partial class AdvancedCalc : Form
     {
-
+        // Fields
         private CalculatorLogic calculator = new CalculatorLogic();
 
         public string selectedCalculation;
@@ -30,8 +30,34 @@ namespace CSC455_ProjectCalculator
         {
 
         }
+        private void AdvancedCalc_Load(object sender, EventArgs e)
+        {
 
-        #region Button Click Handlers
+        }
+        #region UI Event Handlers
+        private void btnClear_Click(object sender, EventArgs e)
+        {
+            geometryCalculation = false;
+            label1.Text = "Please Select Your Calculation";
+            textBox1.Text = "";
+            labelResult.Text = "";
+        }
+        public void btnCalculate_Click(object sender, EventArgs e)
+        {
+            // Get text from textBox1
+            string inputText = textBox1.Text.Trim();
+
+            // Exit early if no input
+            if (string.IsNullOrEmpty(inputText))
+            {
+                label1.Text = "Error: No input";
+                return;
+            }
+            var numbers = ParseInput(inputText);
+            if (numbers == null) return;
+
+            PerformCalculations(numbers);
+        }
         private void setupStuff(string selectedCalc, bool geometryCalc, string label1Text)
         {
             selectedCalculation = selectedCalc;
@@ -81,16 +107,7 @@ namespace CSC455_ProjectCalculator
         }
         #endregion
 
-        #region Clear Button
-        private void btnClear_Click(object sender, EventArgs e)
-        {
-            geometryCalculation = false;
-            label1.Text = "Please Select Your Calculation";
-            textBox1.Text = "";
-            labelResult.Text = "";
-        }
-        #endregion
-        #region Parse Text
+        #region Utility Methods
         // Parses text in textBox1 and converts to list of doubles, delimited by ' '
         public List<double> ParseInput(string inputText)
         {
@@ -112,6 +129,7 @@ namespace CSC455_ProjectCalculator
         }
         #endregion
 
+        #region Calculation Handling
         public void PerformCalculations(List<double> numbers)
         {
             // Switch statements to handle proper calculation
@@ -184,7 +202,7 @@ namespace CSC455_ProjectCalculator
                     }
                     break;
                 #endregion
-
+                #region Avg, DotProd, & CrossProd
                 case "calcAverage":
                     double avg = calculator.CalcAverage(numbers);
                     labelResult.Text = avg.ToString("N2");
@@ -227,35 +245,14 @@ namespace CSC455_ProjectCalculator
                         MessageBox.Show("Please enter 3 numbers for coefficients a, b, c from form of ax^2+bx+c.");
                     }
                     break;
+                    #endregion
             }
-        }
-        #region Calculate Btn
-        public void btnCalculate_Click(object sender, EventArgs e)
-        {
-            // Get text from textBox1
-            string inputText = textBox1.Text.Trim();
-
-            // Exit early if no input
-            if (string.IsNullOrEmpty(inputText))
-            {
-                label1.Text = "Error: No input";
-                return;
-            }
-            var numbers = ParseInput(inputText);
-            if (numbers == null) return;
-
-            PerformCalculations(numbers);
-          
-        }
-
-        private void AdvancedCalc_Load(object sender, EventArgs e)
-        {
-
         }
         #endregion
     }
     #endregion
 
+    #region CalculatorLogic
     public class CalculatorLogic
     {
         #region Perimeters
@@ -298,6 +295,7 @@ namespace CSC455_ProjectCalculator
             return l * w;
         }
         #endregion
+        #region Avg, Dot/CrossProd, QuadRoot
         public double CalcAverage(List<double> numbers)
         {
             double total = 0;
@@ -335,5 +333,7 @@ namespace CSC455_ProjectCalculator
 
             return (root1, root2);
         }
+        #endregion
     }
+    #endregion
 }
