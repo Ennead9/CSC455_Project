@@ -57,7 +57,7 @@
             // 
             // circlePerim
             // 
-            this.circlePerim.Location = new System.Drawing.Point(112, 310);
+            this.circlePerim.Location = new System.Drawing.Point(35, 280);
             this.circlePerim.Name = "circlePerim";
             this.circlePerim.Size = new System.Drawing.Size(151, 31);
             this.circlePerim.TabIndex = 1;
@@ -67,7 +67,7 @@
             // 
             // trianglePerim
             // 
-            this.trianglePerim.Location = new System.Drawing.Point(312, 310);
+            this.trianglePerim.Location = new System.Drawing.Point(192, 280);
             this.trianglePerim.Name = "trianglePerim";
             this.trianglePerim.Size = new System.Drawing.Size(151, 31);
             this.trianglePerim.TabIndex = 2;
@@ -77,7 +77,7 @@
             // 
             // rectPerim
             // 
-            this.rectPerim.Location = new System.Drawing.Point(518, 310);
+            this.rectPerim.Location = new System.Drawing.Point(349, 280);
             this.rectPerim.Name = "rectPerim";
             this.rectPerim.Size = new System.Drawing.Size(151, 31);
             this.rectPerim.TabIndex = 3;
@@ -87,7 +87,7 @@
             // 
             // circleArea
             // 
-            this.circleArea.Location = new System.Drawing.Point(112, 382);
+            this.circleArea.Location = new System.Drawing.Point(35, 335);
             this.circleArea.Name = "circleArea";
             this.circleArea.Size = new System.Drawing.Size(151, 31);
             this.circleArea.TabIndex = 4;
@@ -97,7 +97,7 @@
             // 
             // triangleArea
             // 
-            this.triangleArea.Location = new System.Drawing.Point(312, 382);
+            this.triangleArea.Location = new System.Drawing.Point(192, 335);
             this.triangleArea.Name = "triangleArea";
             this.triangleArea.Size = new System.Drawing.Size(151, 31);
             this.triangleArea.TabIndex = 5;
@@ -107,7 +107,7 @@
             // 
             // rectArea
             // 
-            this.rectArea.Location = new System.Drawing.Point(518, 382);
+            this.rectArea.Location = new System.Drawing.Point(349, 335);
             this.rectArea.Name = "rectArea";
             this.rectArea.Size = new System.Drawing.Size(151, 31);
             this.rectArea.TabIndex = 6;
@@ -117,7 +117,7 @@
             // 
             // dotProd
             // 
-            this.dotProd.Location = new System.Drawing.Point(112, 447);
+            this.dotProd.Location = new System.Drawing.Point(35, 391);
             this.dotProd.Name = "dotProd";
             this.dotProd.Size = new System.Drawing.Size(151, 31);
             this.dotProd.TabIndex = 7;
@@ -127,7 +127,7 @@
             // 
             // crossProd
             // 
-            this.crossProd.Location = new System.Drawing.Point(312, 447);
+            this.crossProd.Location = new System.Drawing.Point(192, 391);
             this.crossProd.Name = "crossProd";
             this.crossProd.Size = new System.Drawing.Size(151, 31);
             this.crossProd.TabIndex = 8;
@@ -137,7 +137,7 @@
             // 
             // average
             // 
-            this.average.Location = new System.Drawing.Point(518, 447);
+            this.average.Location = new System.Drawing.Point(349, 391);
             this.average.Name = "average";
             this.average.Size = new System.Drawing.Size(151, 31);
             this.average.TabIndex = 9;
@@ -188,7 +188,7 @@
             // 
             // btnQuadRoot
             // 
-            this.btnQuadRoot.Location = new System.Drawing.Point(312, 498);
+            this.btnQuadRoot.Location = new System.Drawing.Point(35, 440);
             this.btnQuadRoot.Name = "btnQuadRoot";
             this.btnQuadRoot.Size = new System.Drawing.Size(151, 31);
             this.btnQuadRoot.TabIndex = 15;
@@ -200,7 +200,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(779, 570);
+            this.ClientSize = new System.Drawing.Size(579, 500);
             this.Controls.Add(this.btnQuadRoot);
             this.Controls.Add(this.labelResult);
             this.Controls.Add(this.label1);
