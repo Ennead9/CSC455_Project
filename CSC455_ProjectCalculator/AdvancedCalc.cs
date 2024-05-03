@@ -74,7 +74,7 @@ namespace CSC455_ProjectCalculator
         }
         private void rectArea_Click(object sender, EventArgs e)
         {
-            setupStuff("rectangleArea", true, "Enter postive values for length and width separated by a space");
+            setupStuff("areaRectangle", true, "Enter postive values for length and width separated by a space");
         }
         private void circleArea_Click(object sender, EventArgs e)
         {
@@ -140,7 +140,7 @@ namespace CSC455_ProjectCalculator
                     if (numbers.Count == 1) //if statement to ensure parameters are met
                     {
                         double perimeter = calculator.CalcCirclePerimeter(numbers[0]);
-                        textBox1.Text = perimeter.ToString("N2"); // Format to 2 decimal places
+                        labelResult.Text = perimeter.ToString("N2"); // Format to 2 decimal places
                     } else {
                         MessageBox.Show("Please enter a single, positive number for diameter");
                         textBox1.Text = ""; // Clear textbox for new input
@@ -185,8 +185,8 @@ namespace CSC455_ProjectCalculator
                 case "areaTriangle":
                     if (numbers.Count == 2) //if statement to ensure parameters are met
                     {
-                        double perimeter = calculator.CalcTriangleArea(numbers[0], numbers[1]);
-                        labelResult.Text = perimeter.ToString("N2");
+                        double area = calculator.CalcTriangleArea(numbers[0], numbers[1]);
+                        labelResult.Text = area.ToString("N2");
                     } else {
                         MessageBox.Show("Please enter positive numbers for base b and height h");
                     }
@@ -195,8 +195,8 @@ namespace CSC455_ProjectCalculator
                 case "areaRectangle":
                     if (numbers.Count == 2) //if statement to ensure parameters are met
                     {
-                        double perimeter = calculator.CalcRectangleArea(numbers[0], numbers[1]);
-                        labelResult.Text = perimeter.ToString("N2");
+                        double area = calculator.CalcRectangleArea(numbers[0], numbers[1]);
+                        labelResult.Text = area.ToString("N2");
                     } else {
                         MessageBox.Show("Please enter positive numbers for length l and width w");
                     }
