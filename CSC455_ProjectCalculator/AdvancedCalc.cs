@@ -217,10 +217,10 @@ namespace CSC455_ProjectCalculator
                         (double root1, double root2) = calculator.CalcQuadRoot(numbers[0], numbers[1], numbers[2]);
                         if(double.IsNaN(root1) || double.IsNaN(root2))
                         {
-                            MessageBox.Show("Error: One non-real root.");
+                            MessageBox.Show("Error: One or more non-real roots.");
                             break;
                         }
-                        textBox1.Text = $"x = {root1}, {root2}";
+                        labelResult.Text = $"x = {root1.ToString("N2")}, {root2.ToString("N2")}";
                     } else
                     {
                         MessageBox.Show("Please enter 3 numbers for coefficients a, b, c from form of ax^2+bx+c.");
